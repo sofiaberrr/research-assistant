@@ -1,0 +1,12 @@
+anthropic
+langgraph
+langchain-anthropic
+chromadb
+pypdf
+arxiv
+fastapi
+uvicorn
+python-dotenv
+pytest
+httpx
+ddgs
