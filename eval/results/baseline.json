@@ -1,0 +1,687 @@
+{
+  "summary": {
+    "label": "baseline",
+    "questions": 40,
+    "errors": 1,
+    "accuracy": "95%",
+    "accuracy_paper_questions": "93%",
+    "accuracy_database_questions": "100%",
+    "groundedness": "74%",
+    "source_hit_rate": "97%",
+    "latency_avg_s": 5.89,
+    "latency_median_s": 5.05,
+    "latency_p95_s": 11.52
+  },
+  "rows": [
+    {
+      "id": "paper_01",
+      "type": "paper",
+      "question": "When a coordinate automorphism P of a classical seed code preserves the parity-check kernel, how is the corresponding check-sector map Q defined, and when is it a pure qubit permutation rather than a CNOT circuit?",
+      "reference_answer": "Q is the unique invertible matrix in GL(m, 2) satisfying HP = QH, which exists because P preserves ker H and hence H and HP share a row space. Q is a permutation only in special cases, making (P, Q) a Tanner graph symmetry; in general Q is an arbitrary invertible linear map, so its action requires a CNOT circuit.",
+      "source_paper_id": "2610.12685",
+      "answer": "**Definition of Q.** In the La-cross paper, P is a coordinate permutation that preserves the seed code C = ker H. Then ker(HP) = ker H, so HP and H have the same row space. This gives a unique invertible Q ∈ GL(m,2) with HP = QH [arXiv:2610.12685, p.8]. Q is the induced action on the check sector (the m rows of H). On the code coordinates, P acts through the unique A ∈ GL(k,2) with AG = GP [arXiv:2610.12685, p.6].\n\n**When Q is a pure permutation.** If Q is itself a permutation matrix, then (P,Q) is a symmetry of the Tanner graph. In that case the action is just a qubit relabelling or atom movement [arXiv:2610.12685, p.8]. A related paper states this case the same way. For a Tanner-graph automorphism σ, there is a permutation matrix Q_σ with HP_σ = Q_σH [arXiv:2609.37699, p.8].\n\n**When Q is a CNOT circuit.** In general Q is an arbitrary invertible linear map. The check-sector action then needs a CNOT circuit rather than a relabelling. For this reason the Tanner-graph symmetry group is in general smaller than the logical automorphism group. The paper gives examples in its appendix B.1 [arXiv:2610.12685, p.8].\n\n**Lifting to the product code.** Take seed automorphisms (P₁,Q₁) and (P₂,Q₂) acting on the two factors of the hypergraph product code. The physical X map is T = (P₁⊗P₂) ⊕ (Q₁^{-T}⊗Q₂), and the Z map is T^{-T} [arXiv:2610.12685, p.8]. On the principal sector, where the logical operators are supported, these maps act only by qubit permutations. The check sector is where a CNOT circuit may be needed [arXiv:2610.12685, p.6].",
+      "tools_used": [
+        "search_papers"
+      ],
+      "latency_s": 6.67,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": 1,
+      "judge_reason": "The answer gives the same key facts as the reference (unique Q in GL(m,2) with HP=QH, a permutation only in the Tanner-graph symmetry case, otherwise a CNOT circuit), and each claim matches the retrieved passages."
+    },
+    {
+      "id": "paper_02",
+      "type": "paper",
+      "question": "In the squeezed cat state generation protocol, what success threshold on the total detected photon number is used, and how much squeezing is applied?",
+      "reference_answer": "The success threshold is set to n_t = 45 detected photons, and 6 dB of squeezing is used.",
+      "source_paper_id": "2609.39482",
+      "answer": "In the main success-probability analysis (Fig. 2), the threshold is **n_t = 45**, and the squeezing is **6 dB** in each squeezer. [arXiv:2609.39482, p.3]\n\n\"Success\" means detecting a total photon number n_tot ≥ n_t over N rounds. [arXiv:2609.39482, p.3] The paper says 6 dB is used throughout the protocols. Larger squeezing makes the success probability rise faster with the number of rounds. [arXiv:2609.39482, p.4]\n\nThe photon-loss simulations use a different, smaller threshold, n_t = 9. This keeps the state within a 25-dimensional truncated space at 6 dB. [arXiv:2609.39482, p.4]",
+      "tools_used": [
+        "search_papers",
+        "search_papers"
+      ],
+      "latency_s": 4.91,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": 1,
+      "judge_reason": "The answer gives n_t = 45 and 6 dB, matching the reference, and its extra claims (n_t = 9 for loss simulations, 25-dimensional space, faster rise with larger squeezing) are supported by the retrieved passages on pp. 3, 4 and 17."
+    },
+    {
+      "id": "paper_03",
+      "type": "paper",
+      "question": "In the reduction to the sequential search game, how are the permutations chosen and sent to the server after all copies finish, and why does this match the original protocol's distribution?",
+      "reference_answer": "The reduction samples independent permutations uniformly at random subject to π_i(t*) = u_i, where u_i is the target index disclosed in the i-th copy, and sends them to the server. This matches the original joint distribution because the u_i are independent uniform indices that were withheld during the weak-protocol interactions.",
+      "source_paper_id": "2609.35633",
+      "answer": "After all λ copies of the search game have finished, the reduction samples the permutations itself and sends them to the server. The paper describes this in its proof that recovering the pair of strings at a fixed index t* reduces to winning λ sequential copies of the search game [arXiv:2609.35633, p.20].\n\n**How the permutations are chosen and sent**\n- During the weak-protocol interactions, the reduction just forwards messages to the server. It stores each copy's disclosed target index uᵢ and strings for the other claws, and it does not reveal them [arXiv:2609.35633, p.20].\n- Once all copies have finished, it samples independent permutations πᵢ uniformly, subject to the constraint πᵢ(t*) = uᵢ. It then sends these permutations to the server [arXiv:2609.35633, p.20].\n- After the server sends its gluing bits, the stored strings determine every combined pair at t ≠ t*. This lets the reduction supply all the required leakage [arXiv:2609.35633, p.20].\n\n**Why this matches the original distribution**\n- The uᵢ are independent and uniform, and they were withheld during the weak interactions. So the permutations the reduction sends have exactly the same joint distribution as in the original protocol [arXiv:2609.35633, p.20].\n- In the original protocol, each πᵢ is a uniform permutation, and uᵢ = πᵢ(t*) is then a uniform index independent of everything the server has seen so far. The reduction samples the uᵢ first and then draws πᵢ conditioned on πᵢ(t*) = uᵢ. This produces the same joint distribution as drawing πᵢ first, which is my own gloss. The paper states only the conclusion.\n- Withholding the uᵢ until the end is what makes this work. The server's view up to that point does not depend on them, so deferring the permutations changes nothing.",
+      "tools_used": [
+        "search_papers"
+      ],
+      "latency_s": 6.9,
+      "accuracy": 1,
+      "grounded": 0,
+      "cited_source": 1,
+      "judge_reason": "The core procedure (uniform permutations subject to πᵢ(t*)=uᵢ, sent after all copies finish, with withheld independent uᵢ) is supported, but the extra claims that uᵢ is independent of the server's view and that deferring changes nothing are not in the retrieved context."
+    },
+    {
+      "id": "paper_04",
+      "type": "paper",
+      "question": "In which journal and volume was the paper on machine learning decoding of circuit-level noise for bivariate bicycle codes by Blue, Avlani, He, Ziyin, and Chuang published?",
+      "reference_answer": "It was published in Quantum, volume 10 (2026), with article number 2149.",
+      "source_paper_id": "2610.18130",
+      "error": "Expecting ',' delimiter: line 1 column 147 (char 146)"
+    },
+    {
+      "id": "paper_05",
+      "type": "paper",
+      "question": "How many measurement shots are used for each logical basis in the surface code memory experiments evaluated on the Willow dataset?",
+      "reference_answer": "Each logical basis (logical-X and logical-Z) uses 50,000 shots. The experiments cover code distances 3, 5, and 7 with 10, 13, 30, and 50 syndrome extraction rounds.",
+      "source_paper_id": "2610.02734",
+      "answer": "Each logical basis uses 50,000 shots. The setup is described in the SMP paper (Syndrome Motif Projection), which evaluates on Google's Willow surface code memory data. The dataset has distances d = 3, 5 and 7, and both logical-X and logical-Z bases. It uses r = 10, 13, 30 and 50 syndrome extraction rounds [arXiv:2610.02734, p.7].",
+      "tools_used": [
+        "search_papers"
+      ],
+      "latency_s": 2.88,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": 1,
+      "judge_reason": "The answer states 50,000 shots per logical basis, distances 3, 5, 7, and rounds 10, 13, 30, 50, all directly supported by the SMP paper excerpt cited in the context."
+    },
+    {
+      "id": "paper_06",
+      "type": "paper",
+      "question": "How many copies of an n-qubit stabilizer state are needed to learn it using two-copy Bell measurements, compared with the number needed for non-adaptive single-copy measurements?",
+      "reference_answer": "Two-copy Bell measurements can learn an n-qubit stabilizer state from Θ(n) copies, whereas non-adaptive single-copy measurements require Ω(n^2) copies.",
+      "source_paper_id": "2610.02031",
+      "answer": "**Two-copy Bell measurements:** Θ(n) copies are enough to learn an n-qubit stabilizer state. Montanaro's Bell-sampling algorithm achieves this. Ω(n) copies are information-theoretically necessary, so the scaling is optimal [arXiv:2610.02031, p.1].\n\n**Non-adaptive single-copy measurements:** these need Ω(n²) copies. The lower bound is shown already for quadratic phase states, a subclass of stabilizer states [arXiv:2610.02031, p.1]. That is a quadratic gap between the two approaches.\n\n**Adaptive single-copy measurements:** the same paper shows that Θ(n) copies suffice if each measurement basis can depend on earlier outcomes. This closes the gap without coherent access to multiple copies. The Ω(n²) bound assumes the measurements on different copies are chosen independently of earlier outcomes, so it doesn't apply to adaptive protocols [arXiv:2610.02031, p.1, p.13].",
+      "tools_used": [
+        "search_papers",
+        "search_papers"
+      ],
+      "latency_s": 4.51,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": 1,
+      "judge_reason": "The answer gives Θ(n) for Bell measurements and Ω(n²) for non-adaptive single-copy measurements, both stated in the context, and its other claims (Ω(n) lower bound, adaptive Θ(n)) are also supported."
+    },
+    {
+      "id": "paper_07",
+      "type": "paper",
+      "question": "In the maximum-entropy reconstruction of a momentum-space probability distribution from measured expectation values, what functional form does the optimal probability p_k take in terms of the Lagrange multipliers β_n and β'_n, and what basis functions are used?",
+      "reference_answer": "The optimal distribution is p_k = 1/(1 + exp(-Σ_n β_n cos(kn) - Σ_n β'_n sin(kn))), i.e., a logistic (Fermi-Dirac-like) form whose exponent is a Fourier-type sum of cosine functions (ε_{n,k} = cos(kn)) and sine functions (ε'_{n,k} = sin(kn)).",
+      "source_paper_id": "2610.01704",
+      "answer": "The optimal p_k has a Fermi–Dirac (logistic) form. The source is [arXiv:2610.01704, p.11].\n\n**Setup.** The measured observables are O_n and O′_n. Their expectation values are related to the momentum occupations p_k ≡ ⟨n(k)⟩ by ⟨O_n⟩ = Σ_k cos(kn) ⟨n(k)⟩ and ⟨O′_n⟩ = Σ_k sin(kn) ⟨n(k)⟩ [arXiv:2610.01704, p.11].\n\n**Entropy and constraints.** The method maximizes the binary Shannon entropy S = −Σ_k [p_k log p_k + (1−p_k) log(1−p_k)]. The constraints are the measured values of ⟨O_n⟩ and ⟨O′_n⟩, imposed with Lagrange multipliers β_n and β′_n [arXiv:2610.01704, p.11].\n\n**Basis functions.** The constraint coefficients are ε_{n,k} = cos(kn) and ε′_{n,k} = sin(kn). These are the Fourier cosine and sine modes [arXiv:2610.01704, p.11].\n\n**Result.** Setting ∂L/∂p_k = 0 gives\n\np_k = 1 / (1 + exp[ −Σ_{n=0}^{M} β_n cos(kn) − Σ_{n=1}^{M} β′_n sin(kn) ])\n\n[arXiv:2610.01704, p.11, Eq. 50].\n\nThe cosine sum runs from n = 0 and the sine sum from n = 1. This is a Fermi–Dirac distribution whose \"energy\" is a trigonometric polynomial in k.\n\nThe second derivative is −1/(p_i(1−p_i)) < 0 and all cross-derivatives vanish. So this stationary point is a local maximum at fixed β [arXiv:2610.01704, p.11].\n\nThe multipliers are then fixed by minimizing the dual cost function\n\nL(β, β′) = Σ_k log(1 + e^{Σ β_n ε_{n,k} + Σ β′_n ε′_{n,k}}) − Σ_n [β_n⟨O_n⟩ + β′_n⟨O′_n⟩]\n\n[arXiv:2610.01704, p.11, Eq. 51].\n\nI did not check the sign convention in the exponent beyond what is quoted from Eq. 50 and Eq. 51. The two equations are written with opposite signs on the multiplier sums, as in the excerpt.",
+      "tools_used": [
+        "search_papers",
+        "search_papers",
+        "search_papers",
+        "search_papers"
+      ],
+      "latency_s": 10.37,
+      "accuracy": 1,
+      "grounded": 0,
+      "cited_source": 1,
+      "judge_reason": "The Fermi-Dirac form, cosine/sine basis, and entropy setup match the context's Eqs. 47-48, but the cited Eq. 50 and Eq. 51, the sum ranges, the Hessian claim, and the dual cost function are not in the retrieved text."
+    },
+    {
+      "id": "paper_08",
+      "type": "paper",
+      "question": "In the 2D toric code, why does a correction that avoids a logical Z loop fail when two adjacent syndrome defects sit on opposite sides of that loop, connected by a single-qubit X error?",
+      "reference_answer": "The combined error (the X error times the correction) has zero syndrome and anticommutes with the chosen logical Z operator, so it is a nontrivial logical X operator. This can give a constant logical failure probability.",
+      "source_paper_id": "2609.39965",
+      "answer": "Both passages come from one paper, which uses this example to show that the logical error rate depends on the choice of decoder.\n\n**Why the correction fails** [arXiv:2609.39965, p.4]:\n\n- **The setup.** Every correction c(σ) is chosen to avoid the support of a fixed logical Z operator. The syndrome σ is two adjacent defects on opposite sides of that Z loop. The actual error is a single-qubit X error, X_e, that connects them, so H_Z e = σ.\n- **The correction.** Any correction that avoids the loop can't take the short path through e, because e crosses the loop. It has to connect the two defects by some other route.\n- **The combined operator.** X_e X_c(σ) has zero syndrome, because both operators produce the same defects. It also anticommutes with the chosen logical Z operator. The reason is that it crosses the Z loop an odd number of times: X_e crosses once, and X_c(σ) never crosses.\n- **The result.** A zero-syndrome operator that anticommutes with a logical Z must be a nontrivial logical X. The decoder therefore fails.\n- **The consequence.** This single-qubit error is likely, so the paper says there \"could be a constant logical failure probability.\"\n\n**The fix.** The paper uses a minimum-weight decoder, c_min(σ), which picks a minimum-weight correction for each syndrome [arXiv:2609.39965, p.4]. For this syndrome it would simply correct the single qubit e, so X_e X_c is trivial.\n\nMy explanation of the odd crossing is my own gloss on the paper's anticommutation statement. The paper doesn't spell it out in those words.",
+      "tools_used": [
+        "search_papers",
+        "search_papers"
+      ],
+      "latency_s": 7.6,
+      "accuracy": 1,
+      "grounded": 0,
+      "cited_source": 1,
+      "judge_reason": "The answer matches the reference, but its claims that the minimum-weight decoder would correct the single qubit e and that X_e crosses the loop exactly once go beyond what the context states, though the odd-crossing gloss is disclosed as the assistant's own."
+    },
+    {
+      "id": "paper_09",
+      "type": "paper",
+      "question": "In the long-distance fan-out gate protocol, when the error parameter p is zero, what ideal output state does the protocol produce, and what does the passage say about the ancillary channel?",
+      "reference_answer": "With p = 0 the protocol faithfully implements the n-qubit fan-out gate C_n, producing the ideal output state |Ψ_id⟩ = C_n|ϕ⟩_{AB...N} (as a density operator after measurements and feed-forward corrections). Any single GHZ state can serve as the ancillary channel to faithfully implement C_n, but the situation changes when the ancillary channel is a mixture of multiple orthogonal GHZ basis states.",
+      "source_paper_id": "2610.18049",
+      "answer": "When p = 0, the protocol implements the n‑qubit fan‑out gate Cⁿ faithfully. The output is the pure ideal state |Ψ_id⟩ = Cⁿ|ϕ⟩_AB…N, which is the gate applied to the initial n‑qubit input state. In density‑operator form, Σₘ VₘMₘU(ρ_in ⊗ ρ_GHZ1)U†Mₘ†Vₘ† = |Ψ_id⟩⟨Ψ_id| [arXiv:2610.18049, p.12].\n\nOn the ancillary channel, the passage says any single GHZ state can serve as the ancillary channel to implement Cⁿ faithfully. The passage is cut off at the point where it starts to discuss the case where the ancillary channel becomes a mixture of multiple orthogonal GHZ basis states [arXiv:2610.18049, p.12]. The next page (p.13) says that with depolarizing noise on the ancilla, the output becomes a mixture. That mixture is (1−p+p/2ⁿ)|Ψ_id⟩⟨Ψ_id| plus (p−p/2ⁿ)|Ψ_nid⟩⟨Ψ_nid|. The second term comes from the other 2ⁿ−1 undesired GHZ states, so the fidelity drops [arXiv:2610.18049, p.13].",
+      "tools_used": [
+        "search_papers"
+      ],
+      "latency_s": 5.0,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": 1,
+      "judge_reason": "The answer gives the ideal state |Ψ_id⟩ = Cⁿ|ϕ⟩ at p=0, states that any single GHZ state works as the ancilla, and notes the change for mixed GHZ states; all cited claims match the p.12–13 context."
+    },
+    {
+      "id": "paper_10",
+      "type": "paper",
+      "question": "In the certified randomness construction that uses complexity leveraging (running a base construction with security parameter max{λ, h(λ)^{2/c}}), what soundness parameter β′(λ) is achieved for polynomial h and Q against any Q-query adversary, and what bound does it simplify to?",
+      "reference_answer": "β′(λ) = e^{-Ω(√max{λ, h(λ)^{2/c}})}, which is at most e^{-Ω(λ^{1/4}·h(λ)^{1/(2c)})} and hence at most e^{-Ω(λ^{1/4})·h(λ)}.",
+      "source_paper_id": "2609.38945",
+      "answer": "For polynomial h, Q and inverse-polynomial δ, the complexity-leveraging construction (Construction 6.4, which runs Construction 6.2 with security parameter max{λ, h(λ)^{2/c}}) achieves the following soundness parameter against any Q-query adversary [arXiv:2609.38945, p.18]:\n\nβ′(λ) = e^{−Ω(√max{λ, h(λ)^{2/c}})}\n\nThe paper simplifies this in steps [arXiv:2609.38945, p.18]:\n\n- Since max{a,b} ≥ √(ab), this is ≤ e^{−Ω(√(√λ · √(h^{2/c})))}.\n- That equals e^{−Ω(λ^{1/4} · h(λ)^{1/(2c)})}.\n- Since c ∈ (0, 1/2), we have 1/(2c) > 1, so this is ≤ e^{−Ω(λ^{1/4} · h(λ))}.\n- The final bound is **β′(λ) ≤ e^{−Ω(λ^{1/4})·h(λ)}**.\n\nTaking ν(λ) = e^{−λ^{1/5}} for large λ, the paper concludes β′(λ) ≤ ν(λ)^{h(λ)}. Here ν is negligible [arXiv:2609.38945, p.18]. This is the \"extremely negligible\" soundness that the paper's strong-soundness definition requires.",
+      "tools_used": [
+        "search_papers",
+        "search_papers"
+      ],
+      "latency_s": 7.66,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": 1,
+      "judge_reason": "The answer gives β′(λ) = e^{-Ω(√max{λ,h^{2/c}})}, simplifies it to e^{-Ω(λ^{1/4}·h^{1/(2c)})} and then e^{-Ω(λ^{1/4})·h(λ)}, all matching the reference and the retrieved p.18 text."
+    },
+    {
+      "id": "paper_11",
+      "type": "paper",
+      "question": "In the misty states formalism, how many balls (qubits) per party does the approach need for three people to win the GHZ game using only the standard real-valued formalism, and how many balls are involved in total?",
+      "reference_answer": "Each party needs two balls (qubits) instead of one, so six balls are involved in total rather than three.",
+      "source_paper_id": "2610.14411",
+      "answer": "Each party needs **two balls (qubits)** instead of one. That makes **six balls in total**, not three. This is for winning the GHZ game with only the standard real-valued misty state formalism [arXiv:2610.14411, p.1; p.6].\n\nThe paper contrasts this with an earlier approach. That approach needed four extra colors and the fact that i² = −1 [arXiv:2610.14411, p.6].\n\nThe extra three balls replace what would otherwise be a single shared \"tagging\" qubit for complex numbers. A single shared qubit won't work for a non-locality proof. All three parties would need access to it, so they could pass information through it. Giving each party its own extra ball means each one only needs local access [arXiv:2610.14411, p.1].",
+      "tools_used": [
+        "search_papers",
+        "query_database"
+      ],
+      "latency_s": 4.48,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": 1,
+      "judge_reason": "The answer states two balls per party and six total, matching the reference, and its supporting claims about the earlier four-color approach, i²=−1, and the shared tagging qubit all appear in the retrieved paper text."
+    },
+    {
+      "id": "paper_12",
+      "type": "paper",
+      "question": "In the SpinControl software, what is the role of the DeviceManager in converting circuit-level programs, and how is it made adaptable to different hardware?",
+      "reference_answer": "The DeviceManager is used by the CircuitCompiler to convert a circuit-level program into a pulse program. It uses a plug-in architecture so users can supply a device configuration tailored to their specific device.",
+      "source_paper_id": "2610.23316",
+      "answer": "**Role.** In SpinControl, the `DeviceManager` holds the implementations of the circuit-level instructions, per qubit or per qubit pair. It also holds the settings for each instruction, which are kept in the settings datastore. The `CircuitCompiler` uses the `DeviceManager` to convert a circuit-level program into a pulse program [arXiv:2610.23316, p.5].\n\nThe instruction implementations can differ from qubit to qubit. Many instructions have settings such as the duration, voltage and frequency of an X90 gate [arXiv:2610.23316, p.5]. Some instructions, like Rz, have a variable that can be set when a circuit is built [arXiv:2610.23316, p.5]. The `CircuitCompiler` wraps the closed-source QConstruct package from TU Delft [arXiv:2610.23316, p.5]. A copy of the datastore is saved with each experiment, so the exact settings can be reused to reproduce it [arXiv:2610.23316, p.5].\n\n**Adaptability.** The `DeviceManager` uses a plug-in architecture, so users can supply a device configuration tailored to their device [arXiv:2610.23316, p.5]. The device definition file lists the available qubits and their connectivity. It also names the `DeviceManager` plug-in that registers the quantum operations on the device [arXiv:2610.23316, p.9]. SpinControl ships with per-qubit implementations of initialization and readout for linear arrays of spin qubits of any length [arXiv:2610.23316, p.5].",
+      "tools_used": [
+        "search_papers",
+        "search_papers"
+      ],
+      "latency_s": 6.15,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": 1,
+      "judge_reason": "The answer states that the DeviceManager is used by the CircuitCompiler to convert circuit programs to pulse programs and uses a plug-in architecture for user device configuration, and every detail it adds is supported by the cited context."
+    },
+    {
+      "id": "paper_13",
+      "type": "paper",
+      "question": "According to the t-SNE analysis of gradient landscapes, what happens to the gradient distribution as the number of qubits in a quantum circuit increases, and why does this pose a challenge for gradient descent training?",
+      "reference_answer": "As qubit count grows, the gradient concentrates in progressively smaller regions and becomes effectively null almost everywhere, since gradients exponentially concentrate in narrow regions and vanish elsewhere, making gradient-based optimization difficult.",
+      "source_paper_id": "2610.09623",
+      "answer": "As the number of qubits increases, the gradients stop being spread across the parameter landscape. They concentrate in a small region and then effectively vanish. The t-SNE analysis is Figure 2 of \"Divide et Impera quantum neural networks for modular hybrid computing architectures\" [arXiv:2610.09623, p.4]. It shows three regimes:\n\n- **Low qubit count:** the gradient is well distributed across the landscape.\n- **Intermediate qubit count:** the gradient starts to concentrate in a smaller region.\n- **High qubit count:** the gradient can be assumed null almost everywhere.\n\nThe paper says that more qubits make the gradients \"exponentially concentrate in narrow regions and vanish elsewhere.\" [arXiv:2610.09623, p.4]\n\nThis is a problem for gradient descent because gradient-based updates become ineffective when the gradient is near zero almost everywhere. The paper describes this as the function flattening into barren plateaus. It calls this a well-known problem for variational quantum algorithms, with no straightforward solution currently available [arXiv:2610.09623, p.4].\n\nThe paper gives a second challenge. With the parameter-shift rule, each partial derivative needs multiple circuit evaluations, so training cost grows in proportion to the number of trainable parameters [arXiv:2610.09623, p.4].\n\nThe authors say they reduce the barren-plateau effect by using local observables and measuring each qubit individually [arXiv:2610.09623, p.4].",
+      "tools_used": [
+        "search_papers",
+        "search_papers"
+      ],
+      "latency_s": 5.31,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": 1,
+      "judge_reason": "The answer covers the reference's key points (gradients concentrate in narrow regions and vanish elsewhere, making gradient descent ineffective), and every claim matches the Figure 2 caption or surrounding text of arXiv:2610.09623 p.4."
+    },
+    {
+      "id": "paper_14",
+      "type": "paper",
+      "question": "What condition defines a trace-norm Lipschitz bound Λ(t) for the exact solution map φ_t on a subset Ω of pure states in the generalized state-dependent double-bracket flow framework?",
+      "reference_answer": "Λ is a trace-norm Lipschitz bound on Ω if ||φ_t(σ1) − φ_t(σ2)||_1 ≤ Λ(t)||σ1 − σ2||_1 for all σ1, σ2 ∈ Ω and all t ≥ 0, where φ_t(σ) is the exact solution of the flow at time t starting from the pure state σ.",
+      "source_paper_id": "2609.37802",
+      "answer": "A function Λ : [0,∞) → [0,∞) is a trace-norm Lipschitz bound for φ_t on Ω ⊂ S_pure (the set of pure states) if it satisfies the following inequality [arXiv:2609.37802, p.6, Definition 4]:\n\n‖φ_t(σ₁) − φ_t(σ₂)‖₁ ≤ Λ(t) ‖σ₁ − σ₂‖₁ for all σ₁, σ₂ ∈ Ω and all t ≥ 0.\n\nHere φ_t(σ) is the exact solution of the flow equation (Eq. 2 in the paper) at time t, starting from the initial state σ. The bound only has to hold on a subset Ω. That subset must contain both the exact trajectory and the states the algorithm generates [arXiv:2609.37802, p.6].\n\nThe bound is used in the global error estimate (Theorem 5). That theorem assumes a one-step error of at most C_step·τ². It then gives a global error of at most C_step·τ²·Σ_{j=0}^{M−1} Λ(τ)^j [arXiv:2609.37802, p.6].",
+      "tools_used": [
+        "search_papers"
+      ],
+      "latency_s": 5.05,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": 1,
+      "judge_reason": "The answer states the same trace-norm Lipschitz condition as the reference, and its extra details (Definition 4, the subset requirement, the Theorem 5 error bound) all appear in the retrieved paper excerpts."
+    },
+    {
+      "id": "paper_15",
+      "type": "paper",
+      "question": "For the LLMD decoder, how does the threshold change as the qudit dimension q increases, and what threshold value is reached at q=13 compared with the qubit threshold?",
+      "reference_answer": "The LLMD decoder's threshold monotonically increases with q, reaching 10.0% at q=13, nearly double the qubit threshold of 5.1%.",
+      "source_paper_id": "2610.11225",
+      "answer": "For the LLMD decoder, the threshold increases monotonically as the qudit dimension q increases. At q=13 it reaches 10.0%, nearly double the qubit threshold of 5.1% [arXiv:2610.11225, p.6].\n\nThese thresholds come from code-capacity simulations of qudit MHC codes under an X-error model. Each threshold is the crossing point of the level-2 and level-3 curves [arXiv:2610.11225, p.6]. The hard-decision (HD) decoder shows no clear trend in threshold with q [arXiv:2610.11225, p.6].\n\nI only retrieved the q=13 and qubit values. The thresholds for intermediate q are in Table I of the paper, which the search didn't return.",
+      "tools_used": [
+        "search_papers"
+      ],
+      "latency_s": 3.17,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": 1,
+      "judge_reason": "The answer gives the monotonic increase, 10.0% at q=13 versus the 5.1% qubit threshold, and the crossing-point definition, all of which appear in the retrieved context (p.6, p.5)."
+    },
+    {
+      "id": "paper_16",
+      "type": "paper",
+      "question": "Why do the attacks considered in the prior certified randomness work that uses the original entropy accumulation theorem fail to cover all possible quantum attacks?",
+      "reference_answer": "That work uses the original entropy accumulation theorem, which cannot adequately handle energy constraints, so its analysis does not encompass all quantum attacks.",
+      "source_paper_id": "2610.05766",
+      "answer": "The collection doesn't answer this directly. The closest material is a statement about one prior energy-constrained randomness paper, which is not the random-circuit-sampling certified randomness work you may mean. I found no passage that explains why an original-EAT analysis of that work misses some quantum attacks.\n\n**Closest match: the energy-constrained QRNG setting.**\n- Ref. [42] in that paper gives a security proof only \"against all adversaries whose energy-constrained attacks can be modeled via the entropy accumulation theorem (EAT)\" [arXiv:2610.05766, p.3].\n- That leaves attacks that can't be modeled via the EAT without a proof. The paper says only that its own bound is the main ingredient for \"rigorous security proofs against general quantum attacks\" [arXiv:2610.05766, p.1].\n- For attacks the EAT does cover, the accumulated entropy over n rounds scales linearly with the worst-case single-round von Neumann entropy. Ref. [42] bounded that quantity only indirectly, through a min-entropy lower bound, which left open how to bound the von Neumann entropy directly [arXiv:2610.05766, p.3].\n- The paper doesn't say which attacks fall outside the EAT's scope or why.\n\n**Possibly relevant: the random-circuit-sampling experiment.** A different paper describes the trapped-ion experiment [LSN+25] as certifying 71,313 bits of smooth min-entropy \"against a restricted class of adversaries and under the additional assumptions of that experiment\" [arXiv:2610.06721, p.12]. It doesn't say what that restriction is, or whether it comes from the EAT.\n\nIf you mean a specific paper, tell me which one. The collection may not contain the generalized-EAT paper you have in mind. The usual reason is that the original EAT needs a Markov-type condition on the rounds, but I can't confirm that from these sources.",
+      "tools_used": [
+        "search_papers",
+        "search_papers",
+        "search_papers",
+        "search_papers",
+        "search_papers",
+        "search_papers",
+        "search_papers",
+        "query_database",
+        "search_papers",
+        "search_papers"
+      ],
+      "latency_s": 23.36,
+      "accuracy": 0,
+      "grounded": 0,
+      "cited_source": 1,
+      "judge_reason": "The answer never states that the original EAT cannot handle energy constraints, the key reference fact, and its claims about 71,313 bits and a Markov-type condition are not supported by the retrieved context."
+    },
+    {
+      "id": "paper_17",
+      "type": "paper",
+      "question": "How does the noise tolerance of the GHZ state compare to that of the spin squeezed state produced by the proposed preparation protocol in metrological applications?",
+      "reference_answer": "The GHZ state is extremely fragile, since a noise strength per qubit of about 1/N already destroys its quantumness, whereas the proposed protocol's ideal final state is optimally robust and tolerates system-size independent noise up to about ξ^2.",
+      "source_paper_id": "2609.36004",
+      "answer": "According to the one relevant paper in the collection, spin squeezed states (SSSs) tolerate noise much better in metrology than GHZ states do.\n\n- **SSS:** SSSs can approach the Heisenberg limit. They \"can exhibit optimal robustness against noise in metrology\" [arXiv:2609.36004, p.1].\n- **GHZ state:** The GHZ state is also Heisenberg-limited. Its \"metrological advantage is extremely fragile to decoherence\" [arXiv:2609.36004, p.1].\n- **Protocol result:** The paper proposes an adaptive local-circuit protocol that prepares SSSs with squeezing parameter ξ in depth O(log 1/ξ) [arXiv:2609.36004, p.1]. Classical simulations with realistic superconducting-qubit noise predict a metrological gain of 4.2 dB beyond the standard quantum limit with 55 qubits in total, ancillae included [arXiv:2609.36004, p.1]. So the prepared SSS keeps a useful advantage under realistic noise.\n\nThe retrieved passages give only this qualitative comparison, taken from the introduction, which cites other works for the robustness claim. I found no direct numerical comparison of GHZ and SSS noise tolerance in the paper.",
+      "tools_used": [
+        "search_papers",
+        "query_database"
+      ],
+      "latency_s": 5.06,
+      "accuracy": 0,
+      "grounded": 1,
+      "cited_source": 1,
+      "judge_reason": "The answer correctly gives the qualitative contrast (GHZ fragile, SSS robust) but omits the reference's key quantitative points, the ~1/N per-qubit GHZ noise threshold and the system-size-independent tolerance up to ξ², and every claim it makes is supported by the retrieved passages."
+    },
+    {
+      "id": "paper_18",
+      "type": "paper",
+      "question": "In the Chern-number estimation algorithm, how is the 2π ambiguity in the phase E_C = −arg(B*C) resolved for points on the right edge, and what bound keeps the auxiliary ratio w_x(k) within unit distance of 1?",
+      "reference_answer": "The ratio w_x(k) = z_x(k)/z_x(b), with z_x(k) = ⟨u(a)|P(k)|u(b)⟩, is shown to satisfy |w_x(k) − 1| ≤ ρ/√(1−ρ²) < 1 with ρ = 1/32. This keeps its principal phase near zero, so it fixes the branch of the phase and removes the 2π ambiguity.",
+      "source_paper_id": "2609.35978",
+      "answer": "**Resolving the 2π ambiguity.** The paper first shows that e^{iE_C} = ph(B*_C) = e^{−iϕ_C}, so E_C equals −ϕ_C only modulo 2π [arXiv:2609.35978, p.20]. The ambiguity is then removed using the mesh bounds, which give |E_C| < π. Together with |ϕ_C| < π/4, this fixes E_C = −ϕ_C as a real equality [arXiv:2609.35978, p.7].\n\nFor the right edge, the appendix defines two quantities [arXiv:2609.35978, p.20]:\n- z_x(k) := ⟨u(a)|P(k)|u(b)⟩\n- w_x(k) := z_x(k)/z_x(b)\n\nBecause P(b)|u(b)⟩ = |u(b)⟩, the denominator is z_x(b) = ⟨u(a)|u(b)⟩.\n\nThe retrieved text cuts off right after the bound below. I did not see the sentence that finishes the argument. My reading is that w_x(k) stays within distance < 1 of 1, so it lies in the open right half-plane and never winds around 0. That would let the transition phase be tracked on a single branch, but this step is my inference, not something the excerpt states.\n\n**The bound keeping w_x(k) within unit distance of 1.** For any k on the right edge [arXiv:2609.35978, p.20]:\n\n|w_x(k) − 1| = |⟨u(a)|[P(k) − P(b)]|u(b)⟩| / |⟨u(a)|u(b)⟩| ≤ ‖P(k) − P(b)‖ / |⟨u(a)|u(b)⟩| ≤ ρ/√(1−ρ²) < 1.\n\n- The first inequality bounds a matrix element between normalized states by the operator norm.\n- The second uses the fact that k and b lie in the same cell. Eq. (A3) then bounds the numerator by ρ, and Eq. (A4) bounds the denominator below by √(1−ρ²).\n- The last inequality uses the mesh parameter ρ = 1/32.",
+      "tools_used": [
+        "search_papers",
+        "search_papers",
+        "search_papers",
+        "search_papers",
+        "search_papers",
+        "search_papers",
+        "search_papers"
+      ],
+      "latency_s": 17.4,
+      "accuracy": 1,
+      "grounded": 0,
+      "cited_source": 1,
+      "judge_reason": "The answer gives the correct w_x definition and the ρ/√(1−ρ²) < 1 bound, but its ρ = 1/32 value and its Eq. (A3)/(A4) attributions are not supported by the excerpt, which shows the denominator bound under (A3)."
+    },
+    {
+      "id": "paper_19",
+      "type": "paper",
+      "question": "In the analysis of random quantum circuits for verifiable advantage, how many gates lie in the eye-shaped region formed by the overlap of the butterfly-reached area and the region from which the probe can be reached, and what total variance lower bound do their contributions yield?",
+      "reference_answer": "The eye-shaped region contains Θ(n^{3/2}) gates, each contributing Ω(n^{-2}) to the variance; since these contributions are orthogonal and add, they give a total variance lower bound of Ω(n^{-1/2}).",
+      "source_paper_id": "2609.37890",
+      "answer": "In the analysis of [arXiv:2609.37890, p.5], the eye-shaped region contains **Θ(n^{3/2}) gates**. Its extent is Θ(n) circuit layers, and its maximal spatial width is Θ(√n). The paper gets this from a biased-random-walk picture, in which both propagation fronts broaden diffusively.\n\nEach of these gates contributes at least Ω(n⁻²) to the variance. The contributions are orthogonal, so they add. This gives a total variance lower bound of **Ω(n^{-1/2})**. Theorem VII.7 gives the variance bound, and Proposition VII.8 gives the individual gate contributions [arXiv:2609.37890, p.5].",
+      "tools_used": [
+        "search_papers"
+      ],
+      "latency_s": 4.6,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": 1,
+      "judge_reason": "The answer gives Θ(n^{3/2}) gates, Ω(n^{-2}) per-gate contributions, and a total Ω(n^{-1/2}) bound, all matching the reference and supported by the retrieved p.5 text."
+    },
+    {
+      "id": "paper_20",
+      "type": "paper",
+      "question": "How was the reduced NEOUCCSD ansatz constructed for the pz-type NEO Zundel simulation, and how many excitations does it retain?",
+      "reference_answer": "The full set of 63 excitations was pruned to the 17 most important ones, identified by running repeated VQE calculations along an exemplary Zundel ion trajectory and scoring each excitation by the sum of its mean parameter value and its variability during the trajectory.",
+      "source_paper_id": "2610.01549",
+      "answer": "The reduced ansatz keeps **17 of the 63 excitations** in the full NEOUCCSD ansatz [arXiv:2610.01549, p.10].\n\n**Why it was needed.** The pz-type NEO Zundel calculation has a larger active space. It also has a small gap of about 1 mHa between the ground state and the first excited state. Together these make a hard optimization problem that VQE with the full UCCSD ansatz could not solve consistently [arXiv:2610.01549, p.10].\n\n**How it was built:**\n- The authors ran VQEs with the full NEOUCCSD ansatz on 80 geometries sampled from a purely electronic Zundel MD simulation. These VQEs did not fully converge, but they gave statistics for the 63 parameters [arXiv:2610.01549, p.18].\n- Each excitation was scored by the sum of its mean parameter value and its variability along the trajectory [arXiv:2610.01549, p.10].\n- They then added excitations one at a time to an initially empty operator pool, starting with the highest-scoring ones. After each addition they re-optimized with VQE and recorded the improvement in the ground-state energy [arXiv:2610.01549, p.19].\n- After 17 excitations, adding more gave no significant energy improvement. They kept 17 as a compromise between a shallow circuit and expressivity [arXiv:2610.01549, p.19].\n\nThe authors note this resembles ADAPT-VQE, because it selects one- and two-body operators from a pool [arXiv:2610.01549, p.10].",
+      "tools_used": [
+        "search_papers",
+        "query_database"
+      ],
+      "latency_s": 6.24,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": 1,
+      "judge_reason": "The answer gives the 17-of-63 pruning, the trajectory-based scoring (mean plus variability), the incremental pool-building with VQE re-optimization, and the stopping point, all of which the retrieved context supports."
+    },
+    {
+      "id": "paper_21",
+      "type": "paper",
+      "question": "In which journal, volume, and year was the paper 'Synthesis of quantum-logic circuits' by Vivek V. Shende, Stephen S. Bullock, and Igor L. Markov published?",
+      "reference_answer": "It was published in the IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems, volume 25, issue 6, in 2006, on pages 1000–1010.",
+      "source_paper_id": "2610.01839",
+      "answer": "The paper was published in **IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems**, **Volume 25** (Issue 6), in **2006**. The issue is June 2006. I didn't find the page range in the search results.\n\nThis paper isn't in the arXiv collection. It is also on arXiv as quant-ph/0406176. I got the journal details from web sources: the NIST PDF header (\"VOL. 25, NO. 6, 2006\") and the ACM Digital Library listing (\"Vol. 25, No. 6\"). The IEEE Xplore record is at https://ieeexplore.ieee.org/document/1629135.",
+      "tools_used": [
+        "query_database",
+        "search_papers",
+        "web_search",
+        "web_search"
+      ],
+      "latency_s": 11.52,
+      "accuracy": 1,
+      "grounded": 0,
+      "cited_source": 0,
+      "judge_reason": "The journal, volume 25, issue 6, and 2006 match the reference, but the claim that the issue is June 2006 and the statement that the paper 'isn't in the arXiv collection' are not supported by the retrieved context."
+    },
+    {
+      "id": "paper_22",
+      "type": "paper",
+      "question": "In the optimization of the mixing weight γ for a Pauli-based state under positivity constraints, what eigenvalue problem is it equivalent to, and how is the optimal γ expressed in terms of it?",
+      "reference_answer": "Finding the optimal γ is equivalent to maximizing 1/λ_max(H) over the coefficient vector r, where H = Σ r_i P_i is a Pauli Hamiltonian. This works because a global sign change swaps the highest excited state and the ground state of H.",
+      "source_paper_id": "2610.07172",
+      "answer": "The optimization is equivalent to an eigenvalue (ground-state energy) problem for a Pauli Hamiltonian. The source is [arXiv:2610.07172, p.4].\n\n- **Setup:** The state is ρ = (1/2^N)(𝟙^⊗N + γ Σ_{i>0} r_i P_i), with sign vector r. You maximize γ subject to ρ ⪰ 0. The purity is monotonic in γ, so this also maximizes the purity.\n- **Equivalent eigenvalue problem:** Define the Pauli Hamiltonian H = Σ r_i P_i = r₁X^⊗N + r₂Y^⊗N + … + r_{4^N}Z₁⋯Z_N. A global sign change swaps its ground state and its highest excited state. The positivity condition therefore becomes a condition on the extreme eigenvalue of H.\n- **Optimal γ:** For a given sign vector, γ_opt = 1/λ_max(H). Optimizing over sign vectors as well gives max_r 1/λ_max(H).\n\nThe passage states the max over r as 1/λ_max(H). It doesn't spell out the intermediate step. I'd expect the binding constraint to be the most negative eigenvalue, 1 + γλ_min ≥ 0. By the sign-flip symmetry, that gives γ ≤ 1/|λ_min| = 1/λ_max.",
+      "tools_used": [
+        "search_papers"
+      ],
+      "latency_s": 5.81,
+      "accuracy": 1,
+      "grounded": 0,
+      "cited_source": 1,
+      "judge_reason": "The answer matches the reference, but the per-sign-vector claim γ_opt = 1/λ_max(H) and the derivation via 1 + γλ_min ≥ 0 are not stated in the retrieved passage, which only gives max over r of 1/λ_max(H)."
+    },
+    {
+      "id": "paper_23",
+      "type": "paper",
+      "question": "In the wavefunction flow simulation with evolution time 0.02 s and 200 time steps, what root-mean-square error (RMSE) between the simulated and reference final probability densities was obtained at the finest discretization, with Δx = 0.0078125 (N = 256 spatial points)?",
+      "reference_answer": "The RMSE was about 1.075 × 10⁻⁵. This is nearly the same as the 1.079 × 10⁻⁵ obtained at Δx = 0.015625, so the error levels off as the grid is refined.",
+      "source_paper_id": "2610.11537",
+      "answer": "At the finest discretization (Δx = 0.0078125, n = 8 address qubits, N = 256), the RMSE between the simulated and reference final probability densities was about **1.075×10⁻⁵** [arXiv:2610.11537, p.33].\n\nThe passage I found doesn't state the 0.02 s and 200-step settings next to this result. I assumed it refers to the same experiment you asked about.\n\nHere is how the RMSE changed with Δx:\n- It fell roughly exponentially from 4.670×10⁻³ to 4.093×10⁻⁵ as n went from 2 to 5 (Δx from 0.5 to 0.0625).\n- It then levelled off at 1.075×10⁻⁵ as n went from 5 to 8.\n- The paper says a smaller Δx would not lower the error further, because temporal discretization error becomes dominant [arXiv:2610.11537, p.33].",
+      "tools_used": [
+        "search_papers"
+      ],
+      "latency_s": 4.85,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": 1,
+      "judge_reason": "The answer gives the reference RMSE of 1.075e-5 at Δx=0.0078125 and the leveling-off behavior, and every claim matches the retrieved passage on p.33; it also honestly notes the 0.02 s/200-step settings are not in the passage."
+    },
+    {
+      "id": "paper_24",
+      "type": "paper",
+      "question": "When approximating a matrix function through the angle map, which sends both ends of the real axis to z = 1, why does the requirement that the function's limits at ±∞ agree restrict only some cases, and when does it matter?",
+      "reference_answer": "The angle map sends both ends of the real axis to z = 1, so the transformed function is continuous on the circle only if the limits at ±∞ agree. This imposes no restriction for a finite-size matrix, whose bounded spectrum maps to an arc away from z = 1, but it matters for unboundedly growing spectra, such as discretizations on finer grids, where discontinuous examples like the sign function cannot be handled.",
+      "source_paper_id": "2610.23429",
+      "answer": "The condition comes from the encoding itself. For a finite matrix it costs nothing, and it only bites when the spectrum is unbounded. This is from the Cayley access models paper [arXiv:2610.23429, p.10].\n\n**Why it exists.** The method writes F(e^{iφ}) = f(σ − γ cot(φ/2)) and approximates F by a Laurent (trigonometric) polynomial on the circle [arXiv:2610.23429, p.9]. The angle map sends both ends of the real axis to z = 1. So F is continuous on the circle only if f(+∞) and f(−∞) agree [arXiv:2610.23429, p.10]. A trigonometric polynomial is continuous, so it can't approximate a jump at z = 1.\n\n**Why it usually doesn't restrict anything.** For a finite-size matrix the spectrum is bounded. Its image on the circle is an arc that stays away from z = 1. The values of f outside the spectrum play no role, so any f that is continuous on the spectrum can be approximated [arXiv:2610.23429, p.10]. Proposition 3.4 makes this precise. It is stated for a compact set S ⊇ Λ(A) and an f continuous on S, and the approximation error is measured only on the image of S [arXiv:2610.23429, p.9]. You can therefore take S to be a compact set containing the spectrum, and the behaviour at ±∞ never enters.\n\n**When it matters.** It matters for spectra that grow without bound, for example a differential operator discretized on finer and finer grids. The arc then approaches z = 1. A function whose two ends disagree can't be followed there. The sign function is the paper's example [arXiv:2610.23429, p.10].\n\nThe retrieved passage cuts off mid-sentence after the sign-function example, so I haven't seen how the paper finishes that point.",
+      "tools_used": [
+        "search_papers",
+        "search_papers"
+      ],
+      "latency_s": 7.1,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": 1,
+      "judge_reason": "The answer covers the reference's key points (the z=1 endpoint issue, no restriction for bounded finite-matrix spectra, and failure for unbounded spectra like the sign function), and its claims match the retrieved pages 9 and 10 of arXiv:2610.23429."
+    },
+    {
+      "id": "paper_25",
+      "type": "paper",
+      "question": "In quantum metrology for estimating an unknown phase, what advantage does using entanglement provide?",
+      "reference_answer": "Entanglement provides a quadratic improvement in the precision scaling of the phase estimate. The passage introduces this with Greenberger-Horne-Zeilinger (GHZ) entangled probes.",
+      "source_paper_id": "2610.09865",
+      "answer": "The collection only partly covers this question. The most relevant paper is on \"coherent consensus\", and it describes the advantage in the following way.\n\n- **Heisenberg-limited precision.** Phase estimation with entangled probes goes back to the founding works of quantum metrology. For amplitudes, the Heisenberg limit is reached through amplitude estimation [arXiv:2610.09865, p.2]. The paper cites these as background and doesn't derive the Heisenberg scaling itself.\n- **How the entanglement is used.** A GHZ state makes the individual phases add up in the relative phase of the state, so the sum can be read from a single qubit. The circuit is U†_GHZ (⊗U_φj) U_GHZ H|0⟩, which gives (|0⟩ + e^{iΣφj}|1⟩)/√2 on the first qubit. Only that qubit is measured, and the estimator is the normalized sum of phases [arXiv:2610.09865, p.4].\n- **Variance reduction.** For the global, equally weighted linear function of the local phases, coherent consensus reduces the variance by a factor of n compared with majority voting, which is the unentangled strategy [arXiv:2610.09865, p.3]. The paper attributes this factor to prior work (its ref. [7]). It also reports that coherent consensus beat majority voting in precision on a trapped-ion device [arXiv:2610.09865, p.2].\n- **Limits.** In sensing networks, entanglement gives no gain for independent local phases. It helps only for global properties such as the average phase [arXiv:2610.09865, p.3].\n- **Constraint.** The sum of phases must stay within a bounded range, such as (−π, π], to avoid branch-cut ambiguity [arXiv:2610.09865, p.4].\n\nIn short, entanglement improves precision from the standard-quantum-limit scaling to Heisenberg-type scaling. The excerpts I found state the variance reduction by a factor of n explicitly, but they don't spell out the 1/√n versus 1/n scaling.",
+      "tools_used": [
+        "search_papers",
+        "search_papers"
+      ],
+      "latency_s": 8.52,
+      "accuracy": 1,
+      "grounded": 0,
+      "cited_source": 1,
+      "judge_reason": "The answer captures the Heisenberg-limited improvement with GHZ probes, but its closing claim about moving from standard-quantum-limit to Heisenberg scaling is not stated in the retrieved excerpts."
+    },
+    {
+      "id": "paper_26",
+      "type": "paper",
+      "question": "What ansatz, classical optimizer, and number of repetitions were used in the Variational Quantum Eigensolver implementation for the codon optimization problem?",
+      "reference_answer": "The VQE implementation used a TwoLocal ansatz of single-qubit Ry rotations and controlled-Z entangling gates with four repetitions (reps = 4), optimized with the L-BFGS-B optimizer for a maximum of 30,000 iterations.",
+      "source_paper_id": "2610.00887",
+      "answer": "In the VQE implementation for codon optimization, the paper used the following setup [arXiv:2610.00887, p.5]:\n\n- **Ansatz:** a `TwoLocal` ansatz built from single-qubit R_y rotation gates and controlled-Z (CZ) entangling gates.\n- **Classical optimizer:** L-BFGS-B, with a maximum of 30,000 iterations.\n- **Repetitions:** 4 (reps = 4).\n\nThe implementation used Qiskit 2.2.x. Simulator calculations used a statevector estimator. The authors chose this setup after comparing several ansatz circuits, optimizers, and circuit depths [arXiv:2610.00887, p.5].",
+      "tools_used": [
+        "search_papers",
+        "query_database",
+        "search_papers",
+        "search_papers"
+      ],
+      "latency_s": 7.13,
+      "accuracy": 1,
+      "grounded": 0,
+      "cited_source": 1,
+      "judge_reason": "The ansatz, optimizer, and reps match the reference, but the retrieved context only covers pages 1-3 of arXiv:2610.00887, so the page 5 citation and the Qiskit 2.2.x, statevector estimator, and comparison claims are unsupported."
+    },
+    {
+      "id": "paper_27",
+      "type": "paper",
+      "question": "In the context of a unitary Floquet operator U with characteristic polynomial f_U(x), when does the discriminant Disc(f_U) vanish, and what does this indicate about the eigenvalues?",
+      "reference_answer": "Disc(f_U) = 0 if and only if two eigenvalues coincide, i.e., λ_i = λ_j for some i ≠ j, meaning the polynomial f_U has repeated roots. Equivalently, a nonzero discriminant means f_U has no repeated roots.",
+      "source_paper_id": "2610.17137",
+      "answer": "**When it vanishes:** Disc(f_U) = ∏_{i<j} (λ_i − λ_j)² is zero if and only if λ_i = λ_j for some i ≠ j. In other words, it vanishes exactly when f_U(x) has a repeated root [arXiv:2610.17137, p.3]. Here f_U(x) = det(xI − U) = ∏(x − λ_i), with eigenvalues counted by algebraic multiplicity.\n\n**What it indicates:**\n- A zero discriminant means the spectrum of U is degenerate: at least two eigenvalues coincide.\n- A nonzero discriminant is the converse. The text is cut off after \"Equivalently, Disc(f_U) ≠ 0 if and only if f_U(x) has…\". From the definition, this should mean f_U has only simple roots, so all eigenvalues are distinct. I did not see the rest of the sentence.\n- Because U is unitary, it is diagonalizable [arXiv:2610.17137, p.3]. A repeated root therefore reflects a genuine degeneracy, with an eigenspace of dimension greater than 1. It does not mean a non-diagonalizable Jordan block.\n\n**Why it matters in that paper:** A recurrence Uⁿ = τI requires every ratio λ_i/λ_j to be an nth root of unity [arXiv:2610.17137, p.3]. The paper works with the squarefree part of f_U, written f_sf(x). It uses the norm of that polynomial's discriminant, together with the degree, to bound the recurrence period n [arXiv:2610.17137, p.4].",
+      "tools_used": [
+        "search_papers"
+      ],
+      "latency_s": 5.96,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": 1,
+      "judge_reason": "The answer states the reference's key facts (Disc=0 iff repeated eigenvalues, nonzero iff no repeated roots), and its other claims, including unitarity implying diagonalizability and the discriminant/degree role in bounding the period, are supported by the retrieved passages."
+    },
+    {
+      "id": "paper_28",
+      "type": "paper",
+      "question": "In the verifiable sampling protocol built on universal blind quantum computing (UBQC), when does the client abort, and what condition must the estimate satisfy for the client to accept?",
+      "reference_answer": "The client aborts, storing the number of trap failures, if any trap round fails. Otherwise it accepts and obtains the estimate p̂ provided that |L(p̂, p)| < ε_th, where ε_th is the error threshold.",
+      "source_paper_id": "2610.13211",
+      "answer": "In the verifiable sampling protocol (Protocol 2) of arXiv:2610.13211, the client mixes computation rounds with test rounds. In the test rounds it sends trap and dummy qubits. The paper doesn't say how many of each beyond n = d + t, where d is the number of computation rounds and t the number of test rounds.\n\n**When the client aborts:** The client aborts if it sees any trap failures after decoding the server's outputs. It stores the number of trap failures, N_T, and then aborts [arXiv:2610.13211, p.3].\n\n**When the client accepts:** If there are no trap failures, the client accepts. It then obtains an estimate p̂ of the output distribution with |L(p̂, p)| < ε_th. Here L is the chosen distance function and ε_th is the target error threshold [arXiv:2610.13211, p.3].\n\n**Why the bound holds (Theorem III.2):**\n- Let δ be the number of corrupted computation rounds. Having δ ≤ δ_max implies |L(p̂, p)| ≤ ε_th, and a computation is declared wrong whenever δ > δ_max.\n- The ratio γ_max is δ_max/d, and ε_th = h_L(γ_max).\n- The protocol then samples with absolute error up to ε_th. Its failure probability decreases exponentially with the number of rounds n [arXiv:2610.13211, p.3].",
+      "tools_used": [
+        "search_papers",
+        "query_database"
+      ],
+      "latency_s": 5.67,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": 1,
+      "judge_reason": "The answer gives the same abort condition (any trap failure, storing N_T) and acceptance condition (|L(p̂,p)| < ε_th) as the reference, and its details on Protocol 2 and Theorem III.2 all appear in the retrieved context."
+    },
+    {
+      "id": "paper_29",
+      "type": "paper",
+      "question": "Which hardware demonstration mapped single-photon interference and absorption onto a superconducting transmon, according to prior quantum-hardware work on optical quantities?",
+      "reference_answer": "Vetlugin et al. mapped single-photon interference and absorption onto a superconducting transmon [25].",
+      "source_paper_id": "2610.16062",
+      "answer": "The demonstration was by Vetlugin et al. The paper \"Multipolar Nanophotonics with Quantum Computers\" says: \"Related hardware demonstrations target other optical quantities. Vetlugin et al. mapped single-photon interference and absorption onto a superconducting transmon [25]\" [arXiv:2610.16062, p.1].\n\nThe retrieved passage gives only the author name and the reference number [25]. It doesn't include the title of the Vetlugin et al. work or its arXiv ID. I could look up the reference list entry if you want the full citation.",
+      "tools_used": [
+        "search_papers",
+        "search_papers"
+      ],
+      "latency_s": 3.93,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": 1,
+      "judge_reason": "The answer names Vetlugin et al., matching the reference, and its quoted passage, paper title, arXiv ID, and page number all appear in the retrieved context."
+    },
+    {
+      "id": "paper_30",
+      "type": "paper",
+      "question": "In the six-vertex case of the proof that µ(G) < 3, why must the union of a colour-1 perfect matching and a colour-2 perfect matching be a single 6-cycle?",
+      "reference_answer": "The union is a disjoint union of even alternating cycles, each of length at least 4 because G is simple and the matchings are edge-disjoint. With only six vertices, the only possibility is a single 6-cycle.",
+      "source_paper_id": "2610.22190",
+      "answer": "The union has to be a single 6-cycle for three reasons, all from [arXiv:2610.22190, p.12].\n\n1. **The union is a set of even alternating cycles.** A colour-1 perfect matching and a colour-2 perfect matching are both perfect matchings. Every vertex therefore has exactly one edge of each colour, so the union is a disjoint union of even cycles whose edges alternate between colours 1 and 2.\n\n2. **Each cycle has length at least 4.** G is simple, so it has no multi-edges. The two matchings are edge-disjoint because their edges have different colours. A 2-cycle would need the same pair of vertices joined by one edge from each matching, which would be a double edge. The shortest possible cycle is therefore a 4-cycle.\n\n3. **Six vertices leave only one option.** The cycles are disjoint, each has even length of at least 4, and together they cover all 6 vertices. The possible lengths are 4+2 or 6, and 4+2 is impossible because a 2-cycle can't occur. So the union is a single 6-cycle.\n\nThe proof uses the same argument for 8 vertices. There the union is either an 8-cycle or two 4-cycles [arXiv:2610.22190, p.12].",
+      "tools_used": [
+        "search_papers"
+      ],
+      "latency_s": 5.44,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": 1,
+      "judge_reason": "The answer gives the same key reasoning as the reference: the union is alternating even cycles, each of length at least 4 by simplicity and edge-disjointness, so six vertices force a single 6-cycle. Its extra explanations are logical elaborations of the context."
+    },
+    {
+      "id": "db_01",
+      "type": "database",
+      "question": "How many papers are in the collection?",
+      "reference_answer": "220",
+      "source_paper_id": null,
+      "answer": "The collection has 220 papers.",
+      "tools_used": [
+        "query_database"
+      ],
+      "latency_s": 1.95,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": null,
+      "judge_reason": "The assistant's answer of 220 papers matches the reference and is directly supported by the retrieved COUNT(*) result of 220."
+    },
+    {
+      "id": "db_02",
+      "type": "database",
+      "question": "How many papers in the collection were published in 2026-10 (year-month)?",
+      "reference_answer": "170",
+      "source_paper_id": null,
+      "answer": "170 papers in the collection were published in October 2026 (2026-10).",
+      "tools_used": [
+        "query_database"
+      ],
+      "latency_s": 2.45,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": null,
+      "judge_reason": "The assistant's answer of 170 matches the reference answer and the retrieved COUNT(*) result of 170; the restatement of 2026-10 as October 2026 is a correct interpretation of the year-month."
+    },
+    {
+      "id": "db_03",
+      "type": "database",
+      "question": "What is the largest number of authors on a single paper in the collection?",
+      "reference_answer": "128",
+      "source_paper_id": null,
+      "answer": "The largest author count on a single paper in the collection is **128**. It belongs to \"Benchmarking exchange-only control of a 48-spin singlet manifold\" (arXiv:2610.07393).\n\nThe next largest are 38 authors (arXiv:2610.10705) and 24 authors (arXiv:2610.12556). I got these from the metadata database, not from the paper text.",
+      "tools_used": [
+        "query_database"
+      ],
+      "latency_s": 2.77,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": null,
+      "judge_reason": "The assistant's answer of 128 matches the reference, and the title, arXiv ID, and author counts (38, 24) all appear in the retrieved context; the claim about the metadata database source is consistent with the context's table format."
+    },
+    {
+      "id": "db_04",
+      "type": "database",
+      "question": "What is the average number of authors per paper, rounded to one decimal?",
+      "reference_answer": "5.2",
+      "source_paper_id": null,
+      "answer": "The average is **5.2 authors per paper**. The exact mean is about 5.21, taken over all 220 papers in the collection.",
+      "tools_used": [
+        "query_database"
+      ],
+      "latency_s": 2.24,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": null,
+      "judge_reason": "The assistant's answer of 5.2 matches the reference, and the exact mean of 5.2136... over 220 papers is directly supported by the retrieved context."
+    },
+    {
+      "id": "db_05",
+      "type": "database",
+      "question": "How many papers in the collection have exactly one author?",
+      "reference_answer": "17",
+      "source_paper_id": null,
+      "answer": "17 papers in the collection have exactly one author. I got this by counting rows in the metadata database where `num_authors = 1`.",
+      "tools_used": [
+        "query_database"
+      ],
+      "latency_s": 2.19,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": null,
+      "judge_reason": "The assistant's answer of 17 matches the reference, and the retrieved context shows a COUNT(*) result of 17; the claim about counting rows with num_authors = 1 is consistent with that query output."
+    },
+    {
+      "id": "db_06",
+      "type": "database",
+      "question": "How many papers have 10 or more authors?",
+      "reference_answer": "18",
+      "source_paper_id": null,
+      "answer": "18 papers in the collection have 10 or more authors.",
+      "tools_used": [
+        "query_database"
+      ],
+      "latency_s": 2.08,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": null,
+      "judge_reason": "The assistant's answer of 18 matches the reference answer, and the retrieved context (COUNT(*) = 18) supports that number."
+    },
+    {
+      "id": "db_07",
+      "type": "database",
+      "question": "What is the earliest publication date of any paper in the collection?",
+      "reference_answer": "2026-09-28",
+      "source_paper_id": null,
+      "answer": "The earliest publication date in the collection is **2026-09-28**. Three papers share it:\n\n- arXiv:2609.36266, \"Quantifying Teleportation Overhead in Distributed Unitary Coupled-Cluster Ansätze\"\n- arXiv:2609.36127, \"Near-Optimal Parallel Unitary Process Tomography in Diamond Distance\"\n- arXiv:2609.36004, \"Digital Quantum Algorithms for Generating and Utilizing Spin Squeezed States\"\n\nI sorted by date and looked at only the first three rows, so there may be more papers from that day.",
+      "tools_used": [
+        "query_database"
+      ],
+      "latency_s": 2.96,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": null,
+      "judge_reason": "The answer gives 2026-09-28 as the earliest date, matching the reference, and the three listed papers and their dates appear in the retrieved context; the hedge about other papers from that day is appropriately flagged as uncertain."
+    },
+    {
+      "id": "db_08",
+      "type": "database",
+      "question": "What is the most recent publication date of any paper in the collection?",
+      "reference_answer": "2026-10-16",
+      "source_paper_id": null,
+      "answer": "The most recent publication date in the collection is **2026-10-16**. Three papers share that date, including arXiv:2610.23840, \"Demonstration of Logical Error Suppression in a Surface Code Memory on a Cloud-Accessible IBM Superconducting Processor.\"",
+      "tools_used": [
+        "query_database"
+      ],
+      "latency_s": 2.56,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": null,
+      "judge_reason": "The answer gives 2026-10-16 as the latest date, matching the reference, and the three papers it names with that date are all in the retrieved context."
+    },
+    {
+      "id": "db_09",
+      "type": "database",
+      "question": "How many papers have the word 'error' in their title?",
+      "reference_answer": "15",
+      "source_paper_id": null,
+      "answer": "15 papers have \"error\" in their title. The count is case-insensitive and also matches longer words that contain it, such as \"errors\".",
+      "tools_used": [
+        "query_database"
+      ],
+      "latency_s": 2.45,
+      "accuracy": 1,
+      "grounded": 0,
+      "cited_source": null,
+      "judge_reason": "The count of 15 matches the reference, but the claims that the match is case-insensitive and includes words like 'errors' are not shown in the retrieved context, which only contains the COUNT(*) result."
+    },
+    {
+      "id": "db_10",
+      "type": "database",
+      "question": "How many papers have the word 'algorithm' in their title?",
+      "reference_answer": "7",
+      "source_paper_id": null,
+      "answer": "**7 papers** have \"algorithm\" in their title. The search was case-insensitive and also matches \"algorithms\".\n\n- 2610.12209: Secure Quantum Handshakes: Quantum Network Verification Via Simon's Algorithm\n- 2610.04176: Parallelizing Dissipative Quantum Algorithms\n- 2609.37199: Encoding universal quantum computation into quantized Berry phases: Hardness results and classical algorithms\n- 2609.36480: Improved Quantum Algorithms for Black-Box Abelian Group Decomposition\n- 2609.36004: Digital Quantum Algorithms for Generating and Utilizing Spin Squeezed States\n- 2609.35978: Chern-number estimation: nearly optimal quantum algorithm and provable quantum speedup\n- 2609.35447: Efficient classical algorithm for estimating linear statistics of Boson Sampling",
+      "tools_used": [
+        "query_database",
+        "query_database"
+      ],
+      "latency_s": 4.97,
+      "accuracy": 1,
+      "grounded": 1,
+      "cited_source": null,
+      "judge_reason": "The assistant's answer of 7 matches the reference, and the listed papers and the count match the retrieved context exactly; the claim about case-insensitive matching and 'algorithms' is a methodological note not contradicted by context, though not directly shown."
+    }
+  ]
+}

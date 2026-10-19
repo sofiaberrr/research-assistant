@@ -37,10 +37,18 @@ Tools:
 - web_search: only for things not covered by the collection
 
 Rules:
-- Ground your answers in tool results. Don't answer from memory when a tool could check.
-- Cite every claim from the papers like [arXiv:2610.04613, p.3].
-- If the tools don't give you enough to answer, say so honestly.
-- Be concise."""
+- Only state facts that appear in the tool results. Do not add background knowledge,
+  derivations, equation numbers, or extra details from memory, even if you're confident
+  they're true.
+- Cite every claim from the papers like [arXiv:2610.04613, p.3], using only paper IDs
+  and page numbers that actually appear in the tool results.
+- If a search doesn't contain the answer, search again before giving up: rephrase with
+  more specific terms (method names, quantities, notation) or different keywords.
+  Try up to 3 searches.
+- If the results still only partly answer the question, answer that part and say
+  what's missing. Never fill the gap yourself.
+- Answer directly in a few sentences, but always include the key specifics from the
+  passages (numbers, thresholds, scalings, names). No tangents."""
 
 llm = ChatAnthropic(model=MODEL, max_tokens=2048).bind_tools(ALL_TOOLS)
 TOOLS_BY_NAME = {t.name: t for t in ALL_TOOLS}
@@ -100,18 +108,19 @@ def ask(question: str) -> dict:
     latency = time.perf_counter() - start
 
     tool_calls = []
-    tool_outputs = []
+    context_parts = []  # every tool call AND its result, in order
     for msg in final_state["messages"]:
         for call in getattr(msg, "tool_calls", None) or []:
             tool_calls.append({"tool": call["name"], "args": call["args"]})
+            context_parts.append(f"TOOL CALL: {call['name']}({call['args']})")
         if isinstance(msg, ToolMessage):
-            tool_outputs.append(msg.content)
+            context_parts.append(f"TOOL RESULT ({msg.name}):\n{msg.content}")
 
     return {
         "question": question,
         "answer": _text_of(final_state["messages"][-1]),
         "tool_calls": tool_calls,
-        "context": "\n\n".join(tool_outputs),  # what the agent saw; used for groundedness in Step 5
+        "context": "\n\n".join(context_parts),  # what the agent saw; used for groundedness in Step 5
         "latency_s": round(latency, 2),
     }
 

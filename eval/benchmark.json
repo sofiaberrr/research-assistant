@@ -1,0 +1,282 @@
+[
+  {
+    "id": "paper_01",
+    "type": "paper",
+    "question": "When a coordinate automorphism P of a classical seed code preserves the parity-check kernel, how is the corresponding check-sector map Q defined, and when is it a pure qubit permutation rather than a CNOT circuit?",
+    "reference_answer": "Q is the unique invertible matrix in GL(m, 2) satisfying HP = QH, which exists because P preserves ker H and hence H and HP share a row space. Q is a permutation only in special cases, making (P, Q) a Tanner graph symmetry; in general Q is an arbitrary invertible linear map, so its action requires a CNOT circuit.",
+    "source_paper_id": "2610.12685"
+  },
+  {
+    "id": "paper_02",
+    "type": "paper",
+    "question": "In the squeezed cat state generation protocol, what success threshold on the total detected photon number is used, and how much squeezing is applied?",
+    "reference_answer": "The success threshold is set to n_t = 45 detected photons, and 6 dB of squeezing is used.",
+    "source_paper_id": "2609.39482"
+  },
+  {
+    "id": "paper_03",
+    "type": "paper",
+    "question": "In the reduction to the sequential search game, how are the permutations chosen and sent to the server after all copies finish, and why does this match the original protocol's distribution?",
+    "reference_answer": "The reduction samples independent permutations uniformly at random subject to π_i(t*) = u_i, where u_i is the target index disclosed in the i-th copy, and sends them to the server. This matches the original joint distribution because the u_i are independent uniform indices that were withheld during the weak-protocol interactions.",
+    "source_paper_id": "2609.35633"
+  },
+  {
+    "id": "paper_04",
+    "type": "paper",
+    "question": "In which journal and volume was the paper on machine learning decoding of circuit-level noise for bivariate bicycle codes by Blue, Avlani, He, Ziyin, and Chuang published?",
+    "reference_answer": "It was published in Quantum, volume 10 (2026), with article number 2149.",
+    "source_paper_id": "2610.18130"
+  },
+  {
+    "id": "paper_05",
+    "type": "paper",
+    "question": "How many measurement shots are used for each logical basis in the surface code memory experiments evaluated on the Willow dataset?",
+    "reference_answer": "Each logical basis (logical-X and logical-Z) uses 50,000 shots. The experiments cover code distances 3, 5, and 7 with 10, 13, 30, and 50 syndrome extraction rounds.",
+    "source_paper_id": "2610.02734"
+  },
+  {
+    "id": "paper_06",
+    "type": "paper",
+    "question": "How many copies of an n-qubit stabilizer state are needed to learn it using two-copy Bell measurements, compared with the number needed for non-adaptive single-copy measurements?",
+    "reference_answer": "Two-copy Bell measurements can learn an n-qubit stabilizer state from Θ(n) copies, whereas non-adaptive single-copy measurements require Ω(n^2) copies.",
+    "source_paper_id": "2610.02031"
+  },
+  {
+    "id": "paper_07",
+    "type": "paper",
+    "question": "In the maximum-entropy reconstruction of a momentum-space probability distribution from measured expectation values, what functional form does the optimal probability p_k take in terms of the Lagrange multipliers β_n and β'_n, and what basis functions are used?",
+    "reference_answer": "The optimal distribution is p_k = 1/(1 + exp(-Σ_n β_n cos(kn) - Σ_n β'_n sin(kn))), i.e., a logistic (Fermi-Dirac-like) form whose exponent is a Fourier-type sum of cosine functions (ε_{n,k} = cos(kn)) and sine functions (ε'_{n,k} = sin(kn)).",
+    "source_paper_id": "2610.01704"
+  },
+  {
+    "id": "paper_08",
+    "type": "paper",
+    "question": "In the 2D toric code, why does a correction that avoids a logical Z loop fail when two adjacent syndrome defects sit on opposite sides of that loop, connected by a single-qubit X error?",
+    "reference_answer": "The combined error (the X error times the correction) has zero syndrome and anticommutes with the chosen logical Z operator, so it is a nontrivial logical X operator. This can give a constant logical failure probability.",
+    "source_paper_id": "2609.39965"
+  },
+  {
+    "id": "paper_09",
+    "type": "paper",
+    "question": "In the long-distance fan-out gate protocol, when the error parameter p is zero, what ideal output state does the protocol produce, and what does the passage say about the ancillary channel?",
+    "reference_answer": "With p = 0 the protocol faithfully implements the n-qubit fan-out gate C_n, producing the ideal output state |Ψ_id⟩ = C_n|ϕ⟩_{AB...N} (as a density operator after measurements and feed-forward corrections). Any single GHZ state can serve as the ancillary channel to faithfully implement C_n, but the situation changes when the ancillary channel is a mixture of multiple orthogonal GHZ basis states.",
+    "source_paper_id": "2610.18049"
+  },
+  {
+    "id": "paper_10",
+    "type": "paper",
+    "question": "In the certified randomness construction that uses complexity leveraging (running a base construction with security parameter max{λ, h(λ)^{2/c}}), what soundness parameter β′(λ) is achieved for polynomial h and Q against any Q-query adversary, and what bound does it simplify to?",
+    "reference_answer": "β′(λ) = e^{-Ω(√max{λ, h(λ)^{2/c}})}, which is at most e^{-Ω(λ^{1/4}·h(λ)^{1/(2c)})} and hence at most e^{-Ω(λ^{1/4})·h(λ)}.",
+    "source_paper_id": "2609.38945"
+  },
+  {
+    "id": "paper_11",
+    "type": "paper",
+    "question": "In the misty states formalism, how many balls (qubits) per party does the approach need for three people to win the GHZ game using only the standard real-valued formalism, and how many balls are involved in total?",
+    "reference_answer": "Each party needs two balls (qubits) instead of one, so six balls are involved in total rather than three.",
+    "source_paper_id": "2610.14411"
+  },
+  {
+    "id": "paper_12",
+    "type": "paper",
+    "question": "In the SpinControl software, what is the role of the DeviceManager in converting circuit-level programs, and how is it made adaptable to different hardware?",
+    "reference_answer": "The DeviceManager is used by the CircuitCompiler to convert a circuit-level program into a pulse program. It uses a plug-in architecture so users can supply a device configuration tailored to their specific device.",
+    "source_paper_id": "2610.23316"
+  },
+  {
+    "id": "paper_13",
+    "type": "paper",
+    "question": "According to the t-SNE analysis of gradient landscapes, what happens to the gradient distribution as the number of qubits in a quantum circuit increases, and why does this pose a challenge for gradient descent training?",
+    "reference_answer": "As qubit count grows, the gradient concentrates in progressively smaller regions and becomes effectively null almost everywhere, since gradients exponentially concentrate in narrow regions and vanish elsewhere, making gradient-based optimization difficult.",
+    "source_paper_id": "2610.09623"
+  },
+  {
+    "id": "paper_14",
+    "type": "paper",
+    "question": "What condition defines a trace-norm Lipschitz bound Λ(t) for the exact solution map φ_t on a subset Ω of pure states in the generalized state-dependent double-bracket flow framework?",
+    "reference_answer": "Λ is a trace-norm Lipschitz bound on Ω if ||φ_t(σ1) − φ_t(σ2)||_1 ≤ Λ(t)||σ1 − σ2||_1 for all σ1, σ2 ∈ Ω and all t ≥ 0, where φ_t(σ) is the exact solution of the flow at time t starting from the pure state σ.",
+    "source_paper_id": "2609.37802"
+  },
+  {
+    "id": "paper_15",
+    "type": "paper",
+    "question": "For the LLMD decoder, how does the threshold change as the qudit dimension q increases, and what threshold value is reached at q=13 compared with the qubit threshold?",
+    "reference_answer": "The LLMD decoder's threshold monotonically increases with q, reaching 10.0% at q=13, nearly double the qubit threshold of 5.1%.",
+    "source_paper_id": "2610.11225"
+  },
+  {
+    "id": "paper_16",
+    "type": "paper",
+    "question": "Why do the attacks considered in the prior certified randomness work that uses the original entropy accumulation theorem fail to cover all possible quantum attacks?",
+    "reference_answer": "That work uses the original entropy accumulation theorem, which cannot adequately handle energy constraints, so its analysis does not encompass all quantum attacks.",
+    "source_paper_id": "2610.05766"
+  },
+  {
+    "id": "paper_17",
+    "type": "paper",
+    "question": "How does the noise tolerance of the GHZ state compare to that of the spin squeezed state produced by the proposed preparation protocol in metrological applications?",
+    "reference_answer": "The GHZ state is extremely fragile, since a noise strength per qubit of about 1/N already destroys its quantumness, whereas the proposed protocol's ideal final state is optimally robust and tolerates system-size independent noise up to about ξ^2.",
+    "source_paper_id": "2609.36004"
+  },
+  {
+    "id": "paper_18",
+    "type": "paper",
+    "question": "In the Chern-number estimation algorithm, how is the 2π ambiguity in the phase E_C = −arg(B*C) resolved for points on the right edge, and what bound keeps the auxiliary ratio w_x(k) within unit distance of 1?",
+    "reference_answer": "The ratio w_x(k) = z_x(k)/z_x(b), with z_x(k) = ⟨u(a)|P(k)|u(b)⟩, is shown to satisfy |w_x(k) − 1| ≤ ρ/√(1−ρ²) < 1 with ρ = 1/32. This keeps its principal phase near zero, so it fixes the branch of the phase and removes the 2π ambiguity.",
+    "source_paper_id": "2609.35978"
+  },
+  {
+    "id": "paper_19",
+    "type": "paper",
+    "question": "In the analysis of random quantum circuits for verifiable advantage, how many gates lie in the eye-shaped region formed by the overlap of the butterfly-reached area and the region from which the probe can be reached, and what total variance lower bound do their contributions yield?",
+    "reference_answer": "The eye-shaped region contains Θ(n^{3/2}) gates, each contributing Ω(n^{-2}) to the variance; since these contributions are orthogonal and add, they give a total variance lower bound of Ω(n^{-1/2}).",
+    "source_paper_id": "2609.37890"
+  },
+  {
+    "id": "paper_20",
+    "type": "paper",
+    "question": "How was the reduced NEOUCCSD ansatz constructed for the pz-type NEO Zundel simulation, and how many excitations does it retain?",
+    "reference_answer": "The full set of 63 excitations was pruned to the 17 most important ones, identified by running repeated VQE calculations along an exemplary Zundel ion trajectory and scoring each excitation by the sum of its mean parameter value and its variability during the trajectory.",
+    "source_paper_id": "2610.01549"
+  },
+  {
+    "id": "paper_21",
+    "type": "paper",
+    "question": "In which journal, volume, and year was the paper 'Synthesis of quantum-logic circuits' by Vivek V. Shende, Stephen S. Bullock, and Igor L. Markov published?",
+    "reference_answer": "It was published in the IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems, volume 25, issue 6, in 2006, on pages 1000–1010.",
+    "source_paper_id": "2610.01839"
+  },
+  {
+    "id": "paper_22",
+    "type": "paper",
+    "question": "In the optimization of the mixing weight γ for a Pauli-based state under positivity constraints, what eigenvalue problem is it equivalent to, and how is the optimal γ expressed in terms of it?",
+    "reference_answer": "Finding the optimal γ is equivalent to maximizing 1/λ_max(H) over the coefficient vector r, where H = Σ r_i P_i is a Pauli Hamiltonian. This works because a global sign change swaps the highest excited state and the ground state of H.",
+    "source_paper_id": "2610.07172"
+  },
+  {
+    "id": "paper_23",
+    "type": "paper",
+    "question": "In the wavefunction flow simulation with evolution time 0.02 s and 200 time steps, what root-mean-square error (RMSE) between the simulated and reference final probability densities was obtained at the finest discretization, with Δx = 0.0078125 (N = 256 spatial points)?",
+    "reference_answer": "The RMSE was about 1.075 × 10⁻⁵. This is nearly the same as the 1.079 × 10⁻⁵ obtained at Δx = 0.015625, so the error levels off as the grid is refined.",
+    "source_paper_id": "2610.11537"
+  },
+  {
+    "id": "paper_24",
+    "type": "paper",
+    "question": "When approximating a matrix function through the angle map, which sends both ends of the real axis to z = 1, why does the requirement that the function's limits at ±∞ agree restrict only some cases, and when does it matter?",
+    "reference_answer": "The angle map sends both ends of the real axis to z = 1, so the transformed function is continuous on the circle only if the limits at ±∞ agree. This imposes no restriction for a finite-size matrix, whose bounded spectrum maps to an arc away from z = 1, but it matters for unboundedly growing spectra, such as discretizations on finer grids, where discontinuous examples like the sign function cannot be handled.",
+    "source_paper_id": "2610.23429"
+  },
+  {
+    "id": "paper_25",
+    "type": "paper",
+    "question": "In quantum metrology for estimating an unknown phase, what advantage does using entanglement provide?",
+    "reference_answer": "Entanglement provides a quadratic improvement in the precision scaling of the phase estimate. The passage introduces this with Greenberger-Horne-Zeilinger (GHZ) entangled probes.",
+    "source_paper_id": "2610.09865"
+  },
+  {
+    "id": "paper_26",
+    "type": "paper",
+    "question": "What ansatz, classical optimizer, and number of repetitions were used in the Variational Quantum Eigensolver implementation for the codon optimization problem?",
+    "reference_answer": "The VQE implementation used a TwoLocal ansatz of single-qubit Ry rotations and controlled-Z entangling gates with four repetitions (reps = 4), optimized with the L-BFGS-B optimizer for a maximum of 30,000 iterations.",
+    "source_paper_id": "2610.00887"
+  },
+  {
+    "id": "paper_27",
+    "type": "paper",
+    "question": "In the context of a unitary Floquet operator U with characteristic polynomial f_U(x), when does the discriminant Disc(f_U) vanish, and what does this indicate about the eigenvalues?",
+    "reference_answer": "Disc(f_U) = 0 if and only if two eigenvalues coincide, i.e., λ_i = λ_j for some i ≠ j, meaning the polynomial f_U has repeated roots. Equivalently, a nonzero discriminant means f_U has no repeated roots.",
+    "source_paper_id": "2610.17137"
+  },
+  {
+    "id": "paper_28",
+    "type": "paper",
+    "question": "In the verifiable sampling protocol built on universal blind quantum computing (UBQC), when does the client abort, and what condition must the estimate satisfy for the client to accept?",
+    "reference_answer": "The client aborts, storing the number of trap failures, if any trap round fails. Otherwise it accepts and obtains the estimate p̂ provided that |L(p̂, p)| < ε_th, where ε_th is the error threshold.",
+    "source_paper_id": "2610.13211"
+  },
+  {
+    "id": "paper_29",
+    "type": "paper",
+    "question": "Which hardware demonstration mapped single-photon interference and absorption onto a superconducting transmon, according to prior quantum-hardware work on optical quantities?",
+    "reference_answer": "Vetlugin et al. mapped single-photon interference and absorption onto a superconducting transmon [25].",
+    "source_paper_id": "2610.16062"
+  },
+  {
+    "id": "paper_30",
+    "type": "paper",
+    "question": "In the six-vertex case of the proof that µ(G) < 3, why must the union of a colour-1 perfect matching and a colour-2 perfect matching be a single 6-cycle?",
+    "reference_answer": "The union is a disjoint union of even alternating cycles, each of length at least 4 because G is simple and the matchings are edge-disjoint. With only six vertices, the only possibility is a single 6-cycle.",
+    "source_paper_id": "2610.22190"
+  },
+  {
+    "id": "db_01",
+    "type": "database",
+    "question": "How many papers are in the collection?",
+    "reference_answer": "220",
+    "source_paper_id": null
+  },
+  {
+    "id": "db_02",
+    "type": "database",
+    "question": "How many papers in the collection were published in 2026-10 (year-month)?",
+    "reference_answer": "170",
+    "source_paper_id": null
+  },
+  {
+    "id": "db_03",
+    "type": "database",
+    "question": "What is the largest number of authors on a single paper in the collection?",
+    "reference_answer": "128",
+    "source_paper_id": null
+  },
+  {
+    "id": "db_04",
+    "type": "database",
+    "question": "What is the average number of authors per paper, rounded to one decimal?",
+    "reference_answer": "5.2",
+    "source_paper_id": null
+  },
+  {
+    "id": "db_05",
+    "type": "database",
+    "question": "How many papers in the collection have exactly one author?",
+    "reference_answer": "17",
+    "source_paper_id": null
+  },
+  {
+    "id": "db_06",
+    "type": "database",
+    "question": "How many papers have 10 or more authors?",
+    "reference_answer": "18",
+    "source_paper_id": null
+  },
+  {
+    "id": "db_07",
+    "type": "database",
+    "question": "What is the earliest publication date of any paper in the collection?",
+    "reference_answer": "2026-09-28",
+    "source_paper_id": null
+  },
+  {
+    "id": "db_08",
+    "type": "database",
+    "question": "What is the most recent publication date of any paper in the collection?",
+    "reference_answer": "2026-10-16",
+    "source_paper_id": null
+  },
+  {
+    "id": "db_09",
+    "type": "database",
+    "question": "How many papers have the word 'error' in their title?",
+    "reference_answer": "15",
+    "source_paper_id": null
+  },
+  {
+    "id": "db_10",
+    "type": "database",
+    "question": "How many papers have the word 'algorithm' in their title?",
+    "reference_answer": "7",
+    "source_paper_id": null
+  }
+]

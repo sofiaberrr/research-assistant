@@ -19,7 +19,7 @@ _collection = chromadb.PersistentClient(path=CHROMA_DIR).get_collection("papers"
 
 
 @tool
-def search_papers(query: str, num_results: int = 5) -> str:
+def search_papers(query: str, num_results: int = 8) -> str:
     """Search the full text of ~220 recent arXiv quantum computing papers.
 
     Use this for any question about what the papers say: methods, results,
